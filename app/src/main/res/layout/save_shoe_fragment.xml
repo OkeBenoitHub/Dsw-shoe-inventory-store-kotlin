@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="SaveShoeViewModel"
+            type="com.www.dswstore.ui.saveshoe.SaveShoeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_bg_app_color"
+        tools:context=".ui.saveshoe.SaveShoeFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
+
+                <!-- take shoe pic from gallery -->
+                <com.balysv.materialripple.MaterialRippleLayout
+                    android:id="@+id/take_shoe_picture_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/button_round"
+                    app:layout_constraintBottom_toBottomOf="@id/shoe_thumb_img"
+                    app:layout_constraintEnd_toStartOf="@id/shoe_thumb_img"
+                    app:layout_constraintTop_toTopOf="@id/shoe_thumb_img"
+                    app:mrl_rippleColor="@color/colorPrimaryDark"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleRoundedCorners="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:contentDescription="@string/take_a_photo_for_shoe_description"
+                        android:focusable="true"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@android:color/darker_gray"
+                        android:textStyle="bold" />
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/shoe_thumb_img"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="@string/shoe_image_text"
+                    android:padding="1dp"
+                    android:src="@drawable/shoe_128"
+                    app:civ_border_color="@android:color/transparent"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/main_bg_color" />
+
+                <!-- take shoe pic from camera-->
+                <com.balysv.materialripple.MaterialRippleLayout
+                    android:id="@+id/take_shoe_picture_camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@drawable/button_round"
+                    app:layout_constraintBottom_toBottomOf="@id/shoe_thumb_img"
+                    app:layout_constraintStart_toEndOf="@id/shoe_thumb_img"
+                    app:layout_constraintTop_toTopOf="@id/shoe_thumb_img"
+                    app:mrl_rippleColor="@color/colorPrimaryDark"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleRoundedCorners="20dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:contentDescription="@string/take_a_photo_for_shoe_description"
+                        android:focusable="true"
+                        android:padding="6dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@android:color/darker_gray"
+                        android:textStyle="bold" />
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/main_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_thumb_img">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_heavy"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/enter_shoe_info_head_text"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/content_header_color" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- Shoe name -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shoe_name_edt_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_header">
+
+                    <EditText
+                        android:id="@+id/shoe_name_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_medium"
+                        android:hint="@string/shoe_name_edit_text"
+                        android:inputType="text"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="@color/edit_text_color" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Shoe price -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shoe_price_edt_view"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_name_edt_view">
+
+                    <EditText
+                        android:id="@+id/shoe_price_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_medium"
+                        android:hint="@string/shoe_price_edit_text"
+                        android:inputType="numberSigned"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="@color/edit_text_color" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Shoe brand name -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shoe_brand_name_edt_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_price_edt_view">
+
+                    <EditText
+                        android:id="@+id/shoe_brand_name_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_medium"
+                        android:hint="@string/brand_name_shoe_edt"
+                        android:inputType="text"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="@color/edit_text_color" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Shoe short description -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/short_description_edt_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_brand_name_edt_view">
+
+                    <EditText
+                        android:id="@+id/short_description_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="none"
+                        android:background="@color/white"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/lato_medium"
+                        android:hint="@string/short_description_shoe_edt"
+                        android:inputType="text"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        android:textColor="@color/edit_text_color" />
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Shoe sections -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shoe_section_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/short_description_edt_view">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_heavy"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/shoe_section_header_text"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/content_header_color" />
+                </androidx.cardview.widget.CardView>
+
+                <RadioGroup
+                    android:id="@+id/shoe_section_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_section_header">
+
+                    <RadioButton
+                        android:id="@+id/men"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/men_section"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSectionSelected(SaveShoeViewModel.sectionMen)}"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/women"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSectionSelected(SaveShoeViewModel.sectionWomen)}"
+                        android:text="@string/women_section"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/kids"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSectionSelected(SaveShoeViewModel.sectionKids)}"
+                        android:text="@string/kids_section"
+                        android:textColor="@color/about_content_color" />
+                </RadioGroup>
+
+                <!-- Shoe sizes -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shoe_size_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_section_options">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_heavy"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/size_shoe_head_text"
+                        android:textAllCaps="true"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:textColor="@color/content_header_color" />
+                </androidx.cardview.widget.CardView>
+
+                <RadioGroup
+                    android:id="@+id/shoe_size_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_size_header">
+
+                    <RadioButton
+                        android:id="@+id/S"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSizeSelected(SaveShoeViewModel.shoeSizeS)}"
+                        android:text="@string/s_size"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/M"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/m_size"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSizeSelected(SaveShoeViewModel.shoeSizeM)}"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/L"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSizeSelected(SaveShoeViewModel.shoeSizeL)}"
+                        android:text="@string/l_size"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/XL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSizeSelected(SaveShoeViewModel.shoeSizeXL)}"
+                        android:text="@string/xl_size"
+                        android:textColor="@color/about_content_color" />
+
+                    <RadioButton
+                        android:id="@+id/XXL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/xxl_size"
+                        android:onClick="@{() -> SaveShoeViewModel.onShoeSizeSelected(SaveShoeViewModel.shoeSizeXXL)}"
+                        android:textColor="@color/about_content_color" />
+                </RadioGroup>
+
+                <!-- Shoe clearance -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/shoe_size_options">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_shoe_clearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:onClick="@{() -> SaveShoeViewModel.setShoeInClearanceOrNot()}"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/shoe_in_clearance"
+                        android:textColor="@android:color/darker_gray"
+                        android:textStyle="bold" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

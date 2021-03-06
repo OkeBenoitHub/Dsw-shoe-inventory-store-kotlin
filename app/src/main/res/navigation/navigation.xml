@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.www.dswstore.ui.main.MainFragment"
+        android:label="@string/app_label_name"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_saveShoeFragment"
+            app:destination="@id/saveShoeFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_mainFragment_to_aboutShoeFragment"
+            app:destination="@id/aboutShoeFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveShoeFragment"
+        android:name="com.www.dswstore.ui.saveshoe.SaveShoeFragment"
+        android:label="@string/save_shoe_fragment_label_text"
+        tools:layout="@layout/save_shoe_fragment" >
+        <argument
+            android:name="shoeId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutShoeFragment"
+        android:name="com.www.dswstore.ui.aboutshoe.AboutShoeFragment"
+        android:label="@string/about_shoe_fragment_label_text"
+        tools:layout="@layout/about_shoe_fragment" >
+        <argument
+            android:name="shoeId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_aboutShoeFragment_to_saveShoeFragment"
+            app:destination="@id/saveShoeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        tools:layout="@layout/favorites_fragment"
+        android:name="com.www.dswstore.ui.favorites.FavoritesFragment"
+        android:label="@string/favorites_fragment_label_text" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_aboutShoeFragment"
+            app:destination="@id/aboutShoeFragment" />
+    </fragment>
+</navigation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/save_shoe_item"
+        android:icon="@drawable/baseline_add_task_white_18dp"
+        android:title="@string/save_shoe_fragment_label_text"
+        app:showAsAction="ifRoom" />
+</menu>

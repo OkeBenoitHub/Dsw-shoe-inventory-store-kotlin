@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/all_shoes_option"
+        android:title="@string/all_shoes" />
+
+    <item
+        android:id="@+id/shoe_section_option"
+        android:title="@string/shoe_section_text" />
+
+    <item
+        android:id="@+id/shoe_size_option"
+        android:title="@string/shoe_size_text" />
+
+    <item
+        android:id="@+id/shoe_price_option"
+        android:title="@string/shoe_price_text" />
+
+    <item
+        android:id="@+id/in_clearance_option"
+        android:title="@string/in_clearance_text" />
+</menu>

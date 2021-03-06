@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="MainViewModel"
+            type="com.www.dswstore.ui.main.MainViewModel" />
+    </data>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/main_bg_app_color">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.main.MainFragment">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/main_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:fontFamily="@font/lato_heavy"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/shoe_inventory_store_head_text"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/content_header_color" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- error text -->
+                <TextView
+                    android:id="@+id/error_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_heavy"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@{MainViewModel.errorMessage}"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/not_found_item_color"
+                    android:visibility="@{MainViewModel.errorMessageVisibility}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_header"
+                    tools:text="Error text" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_header" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view_shoes"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_header" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_new_shoe"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:contentDescription="@string/add_new_shoe_to_store_description"
+                android:onClick="@{() -> MainViewModel.onNavigateToSaveShoeFragment()}"
+                android:src="@android:drawable/ic_input_add"
+                app:backgroundTint="@color/white"
+                app:elevation="4dp"
+                app:maxImageSize="34dp"
+                app:rippleColor="@color/colorPrimaryLight"
+                app:srcCompat="@android:drawable/ic_input_add"
+                app:tint="@color/color_tint_floating_action_button_icon" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
